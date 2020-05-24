@@ -29,7 +29,8 @@ async function applyTag(tag, owner, repo, auth) {
     if (! await hasTag(tag, owner, repo, auth)) {
       console.log(`Tag ${tag} not found in repo`);
 
-      const newTag = await github.git.createTag({
+      const octo = new github.GitHub(auth);
+      const newTag = await octo.git.createTag({
         owner,
         repo,
         tag: this.name,
@@ -42,7 +43,7 @@ async function applyTag(tag, owner, repo, auth) {
       core.warning(`Created new tag: ${newTag.data.tag}`)
 
       try {
-        const newReference = await github.git.createRef({
+        await octo.git.createRef({
           owner,
           repo,
           ref: `refs/tags/${newTag.data.tag}`,
