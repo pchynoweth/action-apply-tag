@@ -59,13 +59,17 @@ async function applyTag(tag, owner, repo, auth) {
 
         throw e;
       }
+
+      core.setOutput('tagcreated', 'yes');
     }
     else {
       console.log(`Tag ${tag} already in repo`);
+      core.setOutput('tagcreated', 'no');
     }
   }
   catch (error) {
     core.setFailed(error.message);
+    core.setOutput('tagcreated', 'no');
   }
 }
 

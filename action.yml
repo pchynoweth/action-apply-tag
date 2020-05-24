@@ -7,6 +7,9 @@ inputs:
   tag:
     description: 'The tag to be applied'
     required: true
+  outputs:
+    tagcreated:
+      description: A "yes" or "no", indicating a new tag was created.
 runs:
   using: 'node12'
   main: 'index.js'

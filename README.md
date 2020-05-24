@@ -12,6 +12,12 @@ This action adds a tag to the repo if the tag does not already exist.
 
 **Required** The tag to be applied
 
+## Outputs
+
+### `tagcreated`
+
+A "yes" or "no", indicating a new tag was created.
+
 ## Example usage
 
 ```yaml
