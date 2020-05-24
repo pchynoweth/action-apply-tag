@@ -29,35 +29,35 @@ async function applyTag(tag, owner, repo, auth) {
     if (! await hasTag(tag, owner, repo, auth)) {
       console.log(`Tag ${tag} not found in repo`);
 
-      // const newTag = await github.git.createTag({
-      //   owner,
-      //   repo,
-      //   tag: this.name,
-      //   message: `Release ${tag}`,
-      //   object: process.env.GITHUB_SHA,
-      //   type: 'commit'
-      // });
+      const newTag = await github.git.createTag({
+        owner,
+        repo,
+        tag: this.name,
+        message: `Release ${tag}`,
+        object: process.env.GITHUB_SHA,
+        type: 'commit'
+      });
 
-      // this._sha = newTag.data.sha
-      // core.warning(`Created new tag: ${newTag.data.tag}`)
+      this._sha = newTag.data.sha
+      core.warning(`Created new tag: ${newTag.data.tag}`)
 
-      // try {
-      //   const newReference = await github.git.createRef({
-      //     owner,
-      //     repo,
-      //     ref: `refs/tags/${newTag.data.tag}`,
-      //     sha: newTag.data.sha
-      //   });
-      // } catch (e) {
-      //   core.warning({
-      //     owner,
-      //     repo,
-      //     ref: `refs/tags/${newTag.data.tag}`,
-      //     sha: newTag.data.sha
-      //   })
+      try {
+        const newReference = await github.git.createRef({
+          owner,
+          repo,
+          ref: `refs/tags/${newTag.data.tag}`,
+          sha: newTag.data.sha
+        });
+      } catch (e) {
+        core.warning({
+          owner,
+          repo,
+          ref: `refs/tags/${newTag.data.tag}`,
+          sha: newTag.data.sha
+        })
 
-      //   throw e;
-      // }
+        throw e;
+      }
     }
     else {
       console.log(`Tag ${tag} already in repo`);
