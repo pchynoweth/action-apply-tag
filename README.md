@@ -1,23 +1,22 @@
-# Hello world JavaScript action
+# Apply tag action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log. To learn how this action was built, see "[Creating a JavaScript action](https://help.github.com/en/articles/creating-a-javascript-action)" in the GitHub Help documentation.
+This action adds a tag to the repo if the tag does not already exist.
 
 ## Inputs
 
-### `who-to-greet`
+### `GITHUB_TOKEN`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** Github secret key for repo
 
-## Outputs
+### `tag`
 
-### `time`
-
-The time we greeted you.
+**Required** The tag to be applied
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@master
+uses: pchynoweth/action-apply-tag@master
 with:
-  who-to-greet: 'Mona the Octocat'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+  tag: v1.0.0
 ```

@@ -1,13 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Apply tag action'
+description: 'Adds a tag to the repo if the tag does not exist.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  GITHUB_TOKEN:  # id of input
+    description: 'Github secret key'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we we greeted you'
+  tag:
+    description: 'The tag to be applied'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
