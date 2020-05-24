@@ -33,7 +33,7 @@ async function applyTag(tag, owner, repo, auth) {
       const newTag = await octo.git.createTag({
         owner,
         repo,
-        tag: this.name,
+        tag,
         message: `Release ${tag}`,
         object: process.env.GITHUB_SHA,
         type: 'commit'
