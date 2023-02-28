@@ -29,7 +29,7 @@ async function applyTag(tag, owner, repo, auth) {
     if (! await hasTag(tag, owner, repo, auth)) {
       console.log(`Tag ${tag} not found in repo`);
 
-      const octo = new github.GitHub(auth);
+      const octo = new github.getOctokit(auth);
       const newTag = await octo.git.createTag({
         owner,
         repo,
