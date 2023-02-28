@@ -11,5 +11,5 @@ inputs:
     tagcreated:
       description: A "yes" or "no", indicating a new tag was created.
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
